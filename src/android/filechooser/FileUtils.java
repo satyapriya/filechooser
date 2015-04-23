@@ -31,7 +31,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import com.ianhanniballake.localstorage.LocalStorageProvider;
+import com.crypho.localstorage.LocalStorageProvider;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -46,7 +46,7 @@ import java.util.Comparator;
  */
 public class FileUtils {
     private FileUtils() {} //private constructor to enforce Singleton pattern
-    
+
     /** TAG for log messages. */
     static final String TAG = "FileUtils";
     private static final boolean DEBUG = false; // Set to true to enable logging
@@ -247,7 +247,7 @@ public class FileUtils {
      * <br>
      * Callers should check whether the path is local before assuming it
      * represents a local file.
-     * 
+     *
      * @param context The context.
      * @param uri The Uri to query.
      * @see #isLocal(String)
@@ -518,7 +518,7 @@ public class FileUtils {
      */
     public static Intent createGetContentIntent() {
         // Implicitly allow the user to select a particular kind of data
-        final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        final Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         // The MIME data type filter
         intent.setType("*/*");
         // Only return URIs that can be opened with ContentResolver

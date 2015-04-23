@@ -27,9 +27,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.crypho.app.R;
+
 /**
  * List adapter for Files.
- * 
+ *
  * @version 2013-12-11
  * @author paulburke (ipaulpro)
  */

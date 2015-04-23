@@ -1,5 +1,5 @@
 
-package com.ianhanniballake.localstorage;
+package com.crypho.localstorage;
 
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
@@ -21,9 +21,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import com.crypho.app.R;
+
 public class LocalStorageProvider extends DocumentsProvider {
 
-    public static final String AUTHORITY = "com.ianhanniballake.localstorage.documents";
+    public static final String AUTHORITY = "com.crypho.localstorage.documents";
 
     /**
      * Default root projection: everything but Root.COLUMN_MIME_TYPES

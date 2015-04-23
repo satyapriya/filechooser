@@ -22,10 +22,11 @@ import org.apache.cordova.PluginResult;
 
 import com.ipaulpro.afilechooser.utils.FileUtils;
 
+import com.crypho.app.R;
 /**
  * FileChooser is a PhoneGap plugin that acts as polyfill for Android KitKat and web
  * applications that need support for <input type="file">
- * 
+ *
  */
 public class FileChooser extends CordovaPlugin {
 

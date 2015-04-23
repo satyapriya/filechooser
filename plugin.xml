@@ -51,8 +51,8 @@
                 </intent-filter>
             </activity>
             <provider
-                android:name="com.ianhanniballake.localstorage.LocalStorageProvider"
-                android:authorities="com.ianhanniballake.localstorage.documents"
+                android:name="com.crypho.localstorage.LocalStorageProvider"
+                android:authorities="com.crypho.localstorage.documents"
                 android:enabled="@bool/use_provider"
                 android:exported="true"
                 android:grantUriPermissions="true"
@@ -60,7 +60,7 @@
                     <intent-filter>
                         <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
                     </intent-filter>
-            </provider>            
+            </provider>
         </config-file>
 
         <!-- cordova plugin src files -->
@@ -69,8 +69,8 @@
         <source-file src="src/android/filechooser/FileListAdapter.java" target-dir="src/com/ipaulpro/afilechooser" />
         <source-file src="src/android/filechooser/FileListFragment.java" target-dir="src/com/ipaulpro/afilechooser" />
         <source-file src="src/android/filechooser/FileLoader.java" target-dir="src/com/ipaulpro/afilechooser" />
-        <source-file src="src/android/filechooser/FileUtils.java" target-dir="src/com/ipaulpro/afilechooser/utils" />        
-        <source-file src="src/android/filechooser/LocalStorageProvider.java" target-dir="src/com/ianhanniballake/localstorage" />
+        <source-file src="src/android/filechooser/FileUtils.java" target-dir="src/com/ipaulpro/afilechooser/utils" />
+        <source-file src="src/android/filechooser/LocalStorageProvider.java" target-dir="src/com/crypho/localstorage" />
         <source-file src="src/android/filechooser/libs/android-support-v4.jar" target-dir="libs/" />
 
         <!-- res files -->
@@ -97,9 +97,9 @@
         <source-file src="src/android/filechooser/res/xml/mimetypes.xml" target-dir="res/xml" />
         <source-file src="src/android/filechooser/res/layout/file.xml" target-dir="res/layout" />
         <source-file src="src/android/filechooser/res/values/bool.xml" target-dir="res/values" />
-        <source-file src="src/android/filechooser/res/values/dimens.xml" target-dir="res/values" />
+        <source-file src="src/android/filechooser/res/values/dimens_filechooser.xml" target-dir="res/values" />
         <source-file src="src/android/filechooser/res/values/styles.xml" target-dir="res/values" />
         <source-file src="src/android/filechooser/res/values-v19/bool.xml" target-dir="res/values-v19" />
-                
+
     </platform>
 </plugin>

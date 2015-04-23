@@ -29,7 +29,7 @@ import java.util.List;
 
 /**
  * Loader that returns a list of Files in a given file path.
- * 
+ *
  * @version 2013-12-11
  * @author paulburke (ipaulpro)
  */

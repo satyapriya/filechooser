@@ -36,6 +36,8 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import com.crypho.app.R;
+
 /**
  * Main Activity that handles the FileListFragments
  *
