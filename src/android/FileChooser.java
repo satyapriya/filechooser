@@ -2,6 +2,7 @@ package com.cesidiodibenedetto.filechooser;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.io.File;
 
 import org.apache.cordova.CordovaActivity;
 import org.json.JSONArray;
@@ -50,23 +51,29 @@ public class FileChooser extends CordovaPlugin {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if( requestCode == REQUEST_CODE) {
-                // If the file selection was successful
                 if (resultCode == Activity.RESULT_OK) {
                     if (data != null) {
                         // Get the URI of the selected file
                         final Uri uri = data.getData();
-                        Log.i(TAG, "Uri = " + uri.toString());
+                        Log.i(TAG, "URI: " + uri.toString());
                         JSONObject obj = new JSONObject();
                         try {
-                            // Get the file path from the URI
-                            final String path = FileUtils.getPath(this.cordova.getActivity(), uri);
-                            obj.put("filepath", path);
-                            this.callbackContext.success(obj);
+                            File f = FileUtils.getFile(this.cordova.getActivity(), uri);
+                            if (f == null) {
+                                this.callbackContext.error("Selected file must be on local drive");
+                            } else {
+                                final String url = f.toURI().toURL().toString();
+                                Log.i(TAG, "URL: " + url);
+                                obj.put("url", url);
+                                this.callbackContext.success(obj);
+                            }
                         } catch (Exception e) {
-                            Log.e("FileChooser", "File select error", e);
+                            Log.e(TAG, "File select error", e);
                             this.callbackContext.error(e.getMessage());
                         }
                     }
+                } else {
+                    this.callbackContext.error("No file selected");
                 }
         }
     }
