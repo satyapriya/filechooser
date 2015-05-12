@@ -35,9 +35,9 @@ public class FileChooser extends CordovaPlugin {
     private static final String TAG = "FileChooser";
     private static final int REQUEST_CODE = 6666; // onActivityResult request code
 
-    private void showFileChooser() {
+    private void showFileChooser(String mime) {
         // Use the GET_CONTENT intent from the utility class
-        Intent target = FileUtils.createGetContentIntent();
+        Intent target = FileUtils.createGetContentIntent(mime);
         // Create the chooser Intent
         Intent intent = Intent.createChooser(
                 target, this.cordova.getActivity().getString(R.string.chooser_title));
@@ -82,7 +82,13 @@ public class FileChooser extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
             this.callbackContext = callbackContext;
             if (action.equals("open")) {
-                showFileChooser();
+                try {
+                    JSONObject options = args.getJSONObject(0);
+                    final String mime = options.optString("mime", "*/*");
+                    showFileChooser(mime);
+                } catch (Exception e) {
+                    callbackContext.error(e.getMessage());
+                }
                 return true;
             }
             else {
