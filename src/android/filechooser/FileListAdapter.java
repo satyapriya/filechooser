@@ -113,7 +113,9 @@ public class FileListAdapter extends BaseAdapter {
         view.setText(file.getName());
 
         // If the item is not a directory, use the file icon
-        int icon = file.isDirectory() ? ICON_FOLDER : ICON_FILE;
+        int icon = file.isDirectory() ? context.getResources().getIdentifier("ic_folder","drawable",packageName) :
+            context.getResources().getIdentifier("ic_file","drawable",packageName);
+
         view.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0);
 
         return row;
