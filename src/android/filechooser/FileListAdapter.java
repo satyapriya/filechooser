@@ -27,8 +27,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.crypho.app.R;
-
 /**
  * List adapter for Files.
  *
@@ -37,14 +35,14 @@ import com.crypho.app.R;
  */
 public class FileListAdapter extends BaseAdapter {
 
-    private final static int ICON_FOLDER = R.drawable.ic_folder;
-    private final static int ICON_FILE = R.drawable.ic_file;
-
     private final LayoutInflater mInflater;
 
     private List<File> mData = new ArrayList<File>();
 
+    private Context context;
+
     public FileListAdapter(Context context) {
+        this.context = context;
         mInflater = LayoutInflater.from(context);
     }
 
@@ -101,9 +99,10 @@ public class FileListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
+        String packageName = context.getPackageName();
 
         if (row == null)
-            row = mInflater.inflate(R.layout.file, parent, false);
+            row = mInflater.inflate(context.getResources().getIdentifier("file","layout",packageName), parent, false);
 
         TextView view = (TextView) row;
 

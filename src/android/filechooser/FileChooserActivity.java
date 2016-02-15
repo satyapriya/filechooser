@@ -36,8 +36,6 @@ import android.widget.Toast;
 
 import java.io.File;
 
-import com.crypho.app.R;
-
 /**
  * Main Activity that handles the FileListFragments
  *
@@ -57,7 +55,10 @@ public class FileChooserActivity extends FragmentActivity implements
     private BroadcastReceiver mStorageListener = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Toast.makeText(context, R.string.storage_removed, Toast.LENGTH_LONG).show();
+            String packageName = context.getPackageName();
+            int storageRemovedId = context.getResources().getIdentifier("storage_removed", "string", packageName);
+
+            Toast.makeText(context, context.getResources().getString(storageRemovedId), Toast.LENGTH_LONG).show();
             finishWithResult(null);
         }
     };
@@ -147,8 +148,13 @@ public class FileChooserActivity extends FragmentActivity implements
      */
     private void addFragment() {
         FileListFragment fragment = FileListFragment.newInstance(mPath);
+
+        Context context = getApplicationContext();
+        String packagename = context.getPackageName();
+        int contentId = context.getResources().getIdentifier("content", "id", packagename);
+
         mFragmentManager.beginTransaction()
-                .add(android.R.id.content, fragment).commit();
+                .add(contentId, fragment).commit();
     }
 
     /**
@@ -161,8 +167,13 @@ public class FileChooserActivity extends FragmentActivity implements
         mPath = file.getAbsolutePath();
 
         FileListFragment fragment = FileListFragment.newInstance(mPath);
+
+        Context context = getApplicationContext();
+        String packagename = context.getPackageName();
+        int contentId = context.getResources().getIdentifier("home", "content", packagename);
+
         mFragmentManager.beginTransaction()
-                .replace(android.R.id.content, fragment)
+                .replace(contentId, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(mPath).commit();
     }
@@ -197,7 +208,11 @@ public class FileChooserActivity extends FragmentActivity implements
                 finishWithResult(file);
             }
         } else {
-            Toast.makeText(FileChooserActivity.this, R.string.error_selecting_file,
+            String packageName = getApplicationContext().getPackageName();
+            int errorSelectingFileStringId = getApplicationContext().getResources().getIdentifier("error_selecting_file", "string", packageName);
+            String errorSelectingFileStringStr = getApplicationContext().getString(errorSelectingFileStringId);
+
+            Toast.makeText(FileChooserActivity.this, errorSelectingFileStringStr,
                     Toast.LENGTH_SHORT).show();
         }
     }

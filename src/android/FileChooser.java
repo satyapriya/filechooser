@@ -23,7 +23,6 @@ import org.apache.cordova.PluginResult;
 
 import com.ipaulpro.afilechooser.utils.FileUtils;
 
-import com.crypho.app.R;
 /**
  * FileChooser is a PhoneGap plugin that acts as polyfill for Android KitKat and web
  * applications that need support for <input type="file">
@@ -39,8 +38,12 @@ public class FileChooser extends CordovaPlugin {
         // Use the GET_CONTENT intent from the utility class
         Intent target = FileUtils.createGetContentIntent(mime);
         // Create the chooser Intent
-        Intent intent = Intent.createChooser(
-                target, this.cordova.getActivity().getString(R.string.chooser_title));
+
+        Context context = this.cordova.getActivity().getApplicationContext();
+        String packageName = context.getPackageName();
+        int chooserTitleStringId = context.getResources().getIdentifier("chooser_title", "string", packageName);
+        Intent intent = Intent.createChooser(target, context.getResources().getString(chooserTitleStringId));
+
         try {
             this.cordova.startActivityForResult((CordovaPlugin) this, intent, REQUEST_CODE);
         } catch (ActivityNotFoundException e) {

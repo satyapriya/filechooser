@@ -1,6 +1,7 @@
 
 package com.crypho.localstorage;
 
+import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -20,8 +21,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import com.crypho.app.R;
 
 public class LocalStorageProvider extends DocumentsProvider {
 
@@ -55,12 +54,17 @@ public class LocalStorageProvider extends DocumentsProvider {
         // Add Home directory
         File homeDir = Environment.getExternalStorageDirectory();
         final MatrixCursor.RowBuilder row = result.newRow();
+
+        Context context = getContext();
+        String packageName = context.getPackageName();
+        int internalStorageId = context.getResources().getIdentifier("internal_storage", "string", packageName);
+
         // These columns are required
         row.add(Root.COLUMN_ROOT_ID, homeDir.getAbsolutePath());
         row.add(Root.COLUMN_DOCUMENT_ID, homeDir.getAbsolutePath());
-        row.add(Root.COLUMN_TITLE, getContext().getString(R.string.internal_storage));
+        row.add(Root.COLUMN_TITLE, context.getString(internalStorageId));
         row.add(Root.COLUMN_FLAGS, Root.FLAG_LOCAL_ONLY | Root.FLAG_SUPPORTS_CREATE);
-        row.add(Root.COLUMN_ICON, R.drawable.ic_provider);
+        row.add(Root.COLUMN_ICON, context.getResources().getIdentifier("ic_provider","drawable",packageName));
         // These columns are optional
         row.add(Root.COLUMN_AVAILABLE_BYTES, homeDir.getFreeSpace());
         // Root.COLUMN_MIME_TYPE is another optional column and useful if you

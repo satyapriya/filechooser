@@ -17,6 +17,7 @@
 package com.ipaulpro.afilechooser;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ListFragment;
@@ -97,7 +98,11 @@ public class FileListFragment extends ListFragment implements
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        setEmptyText(getString(R.string.empty_directory));
+        Context context = getActivity();
+        String packageName = context.getPackageName();
+        int emptyDirectoryId = context.getResources().getIdentifier("empty_directory", "string", packageName);
+
+        setEmptyText(getString(emptyDirectoryId));
         setListAdapter(mAdapter);
         setListShown(false);
 
