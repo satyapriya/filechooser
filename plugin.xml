@@ -97,7 +97,7 @@
         <source-file src="src/android/filechooser/res/layout/file.xml" target-dir="res/layout" />
         <source-file src="src/android/filechooser/res/values/bool.xml" target-dir="res/values" />
         <source-file src="src/android/filechooser/res/values/dimens_filechooser.xml" target-dir="res/values" />
-        <source-file src="src/android/filechooser/res/values/styles.xml" target-dir="res/values" />
+        <source-file src="src/android/filechooser/res/values/styles_filechooser.xml" target-dir="res/values" />
         <source-file src="src/android/filechooser/res/values-v19/bool.xml" target-dir="res/values-v19" />
 
     </platform>
