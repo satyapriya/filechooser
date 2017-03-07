@@ -35,7 +35,7 @@ cordova plugin add https://github.com/caixiangsap/filechooser.git
 ### Example
 ```
     var success = function( data ) {
-        var filepath = data.filepath;
+        var filepath = data.url;
         function win(r) {
             console.log("Code = " + r.responseCode);
             console.log("Response = " + r.response);
