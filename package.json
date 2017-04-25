@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-file-chooser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "File Chooser for Cordova/Phonegap based on filechooser from cdibened & crypho & wrrzag88.",
   "cordova": {
     "id": "cordova-plugin-file-chooser",
